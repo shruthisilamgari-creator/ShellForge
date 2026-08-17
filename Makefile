@@ -1,6 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -g -Iinclude
-SRC = src/main.c
+SRC = src/main.c \
+      src/input.c
 TARGET = bin/shellforge
 
 all: $(TARGET)
@@ -14,4 +15,3 @@ run:
 
 clean:
 	rm -rf bin/*
-
