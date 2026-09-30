@@ -4,10 +4,12 @@
 
 #include "../include/shell.h"
 #include "../include/input.h"
+#include "../include/parser.h"
 
 int main()
 {
     char *line;
+    char **tokens;
 
     printf("=================================\n");
     printf("%s Version %s\n", SHELL_NAME, VERSION);
@@ -25,9 +27,19 @@ int main()
             break;
         }
 
-        if(strlen(line) != 0)
-            printf("You entered : %s\n", line);
+        tokens = parse_line(line);
 
+        if(tokens[0] != NULL)
+        {
+            printf("Command: %s\n", tokens[0]);
+
+            for(int i = 1; tokens[i] != NULL; i++)
+            {
+                printf("Argument %d: %s\n", i, tokens[i]);
+            }
+        }
+
+        free_tokens(tokens);
         free(line);
     }
 
